@@ -1,0 +1,9 @@
+<!doctype html><html lang="es" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><title>Charlie - Configuración</title><link rel="stylesheet" th:href="@{/css/style.css}"></head><body><main>
+<h1>Configuración de la "Isla del Capricho"</h1><p class="error" th:if="${error}" th:text="${error}"></p>
+<form th:action="@{/configurar}" th:object="${config}" method="post">
+<label>Dimensión inicial de la zona:</label><div class="inline"><input type="number" th:field="*{filas}" min="1"><span>x</span><input type="number" th:field="*{columnas}" min="1"></div>
+<label>Aumento de visión de la hormiga:</label><input type="number" th:field="*{aumento}" min="1">
+<label>Posición inicial de la hormiga:</label><div class="inline"><input type="number" th:field="*{filaInicial}" min="0"><span>,</span><input type="number" th:field="*{columnaInicial}" min="0"></div>
+<label>Dirección inicial (N, R, S, L):</label><input type="text" th:field="*{direccion}" maxlength="1" required>
+<label>Cantidad de foto por actualización:</label><input type="number" th:field="*{fotosPorActualizacion}" min="1" max="20000">
+<button type="submit">Configurar</button></form></main></body></html>

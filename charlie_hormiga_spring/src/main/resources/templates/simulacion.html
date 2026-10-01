@@ -1,0 +1,8 @@
+<!doctype html><html lang="es" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><title>Charlie - Simulación</title><link rel="stylesheet" th:href="@{/css/style.css}"></head><body><main>
+<h1>La Hormiga Charlie</h1><p>Foto / movimiento actual: <b th:text="${sim.movimientos}"></b> | Terreno: <b th:text="${sim.filas + ' x ' + sim.columnas}"></b></p>
+<form class="actions" th:action="@{/avanzar}" method="post"><label>Cantidad de foto por actualización:</label><input name="cantidad" type="number" min="1" max="20000" th:value="${cantidad}"><button>Iniciar / avanzar</button></form>
+<div class="board" th:style="'grid-template-columns:repeat('+${sim.columnas}+',12px)'">
+<th:block th:each="fila,rs:${sim.feromonas}"><span th:each="celda,cs:${fila}" class="cell" th:classappend="${celda} ? ' pheromone' : ''" th:text="${rs.index==sim.hormiga.fila and cs.index==sim.hormiga.columna} ? ${sim.hormiga.simbolo} : ''"></span></th:block>
+</div>
+<div class="actions"><form th:action="@{/foto20000}" method="post"><button>Ir a foto 20000</button></form><form th:action="@{/reiniciar}" method="post"><button class="secondary">Nueva configuración</button></form></div>
+<p class="help">Blanco/celeste = miga. Negro = feromona. La flecha indica la posición y dirección de Charlie.</p></main></body></html>
